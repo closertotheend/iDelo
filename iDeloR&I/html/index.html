@@ -23,9 +23,11 @@
 <!-- CUSTOM STUFF -->
 <script>
 	$(document).ready(function() {
-		$("#ajax-navbar").load("includes/common/navbar.html");
-		$("#ajax-footer").load("includes/common/footer.html");
+		$("#ajax-navbar").load("includes/common/navbar.html", function() {
+			$("li#home").addClass("active");
+		});
 		$("#ajax-content").load("includes/index/content.html");
+		$("#ajax-footer").load("includes/common/footer.html");
 	});
 </script>
 </head>
