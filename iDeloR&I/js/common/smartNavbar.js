@@ -8,6 +8,7 @@ $(document).ready(function() {
 		$("#ajax-navbar").load("includes/common/navbar.html", function() {
 			markNavbarMenuSection();
 			$("li#user-complaints").hide();
+			$("li#user-new-complaint").hide();
 		});
 	} else {
 		$("#ajax-navbar").load("includes/common/navbar.html", function() {
@@ -22,6 +23,9 @@ function markNavbarMenuSection() {
 	switch (getCurentFileName()) {
 	case "index.html":
 		$("li#home").addClass("active");
+		break;
+	case "newComplaint.html":
+		$("li#user-new-complaint").addClass("active");
 		break;
 	default:
 		break;

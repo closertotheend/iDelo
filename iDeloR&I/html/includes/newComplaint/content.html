@@ -1,22 +1,4 @@
 <div class="jumbotron">
-
-     <script>
-         $('#datetimepicker').datetimepicker();
-
-         var tagApi = jQuery("#inputCrimeType").tagsManager({
-             prefilled: ["Blasphemy", "Anti-government talks"]
-         });
-
-         jQuery("#inputCrimeType").typeahead({
-             //TODO: prefetch values for autocomplete
-
-         }).on('typeahead:selected', function (e, d) {
-
-             tagApi.tagsManager("pushTag", d.value);
-
-         });
-
-     </script>
     <form  role="form" style="max-width: 45%;">
         <h2 class="form-signin-heading">Provide the information about violation</h2>
         <input class="form-control" type="text" placeholder="Episode name" required autofocus>
@@ -25,5 +7,4 @@
         <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
         <hr>
     </form>
-
 </div>
