@@ -1,9 +1,15 @@
 <div class="jumbotron">
     <form  role="form" style="max-width: 45%;">
-        <h2 class="form-signin-heading">Provide the information about violation</h2>
+        <h2 style="padding-bottom: 5%" class="form-signin-heading">Provide the information about violation</h2>
         <input class="form-control" type="text" placeholder="Episode name" required autofocus>
         <input class="form-control" id="datetimepicker" placeholder="Date & Time" required type="text">
         <input class="form-control" id="inputCrimeType" type="text" name="tags" placeholder="Violation tags" class="tm-input"/>
+        <textarea class="form-control" placeholder="Violation details" rows="10" cols="40" style="resize: none"></textarea>
+        <br>
+        <label style="padding: 3px;">Mark violation location:</label>
+        <div id="map_canvas"></div>
+        <input type="hidden" required id="latFld">
+        <input type="hidden" required id="lngFld">
         <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
         <hr>
     </form>
