@@ -4,20 +4,34 @@
 
 $(document).ready(function() {
 	var role = getUrlVars()["role"];
+	if (role === "undefined") {
+		role = "user";
+	}
+
 	if (role === "admin") {
 		$("#ajax-navbar").load("includes/common/navbar.html", function() {
 			markNavbarMenuSection();
+			appendRoleToLinks(role);
 			$("li#user-complaints").hide();
 			$("li#user-new-complaint").hide();
 		});
 	} else {
 		$("#ajax-navbar").load("includes/common/navbar.html", function() {
 			markNavbarMenuSection();
+			appendRoleToLinks(role);
 			$("li#citizen-registry").hide();
+			$("li#all-complaints").hide();
 		});
 	}
 
 });
+
+function appendRoleToLinks(role) {
+	$("a").each(function() {
+		var _href = $(this).attr("href");
+		$(this).attr("href", _href + '?role=' + role);
+	});
+}
 
 function markNavbarMenuSection() {
 	switch (getCurentFileName()) {
@@ -26,6 +40,9 @@ function markNavbarMenuSection() {
 		break;
 	case "newComplaint.html":
 		$("li#user-new-complaint").addClass("active");
+		break;
+	case "allComplaints.html":
+		$("li#all-complaints").addClass("active");
 		break;
 	default:
 		break;
