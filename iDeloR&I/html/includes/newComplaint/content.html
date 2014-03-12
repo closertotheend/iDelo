@@ -10,6 +10,22 @@
         <div id="map_canvas"></div>
         <input type="hidden" required id="latFld">
         <input type="hidden" required id="lngFld">
+        <br>
+        <div class="form-group">
+            <label style="padding: 3px;">Add violation images:</label>
+            <table width="100%" border="1" cellspacing=0 cellpadding=5>
+            <tr>
+                <td align="left" height="105" style="background-color: white" ondragenter="return false" ondragover="return false" ondrop="dropIt(event)">
+                    <output id="thumbs"></output>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p style="font-size: inherit">Drag & drop or choose images from your local file system: <input type="file" id="input" size="10" multiple="true" onchange="imagesSelected(this.files)" /></p>
+                </td>
+            </tr>
+        </table>
+        </div>
         <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
         <hr>
     </form>

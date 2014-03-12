@@ -28,6 +28,61 @@
     <link href="../css/common/common.css" rel="stylesheet">
     <link href="../css/common/navbar-fixed-top.css" rel="stylesheet">
 
+    <style type="text/css">
+        .tableheader {
+            background-color: #FFFFFF;
+            background-image: url(http://www.ibm.com/i/v16/t/sprites-t1.gif);
+            background-repeat: repeat-x;
+            background-position: 0px -545px;
+            padding-left: 10px;
+            font-weight: bold;
+            border-top-width: 0px;
+            border-right-width: 0px;
+            border-bottom-width: 1px;
+            border-left-width: 0px;
+            border-top-style: none;
+            border-right-style: none;
+            border-bottom-style: solid;
+            border-left-style: none;
+            border-top-color: #FFFFFF;
+            border-bottom-color: #cccccc;
+            font-size: 12px;
+        }
+        .tablepadding {
+            margin: 0px;
+            padding-top: 0px;
+            padding-right: 10px;
+            padding-bottom: 0px;
+            padding-left: 10px;
+            border-top-width: 0px;
+            border-right-width: 0px;
+            border-bottom-width: 0px;
+            border-left-width: 0px;
+            border-top-style: none;
+            border-right-style: none;
+            border-bottom-style: none;
+            border-left-style: none;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12px;
+        }
+
+        .tableborder {
+            border: 1px solid #cccccc;
+        }
+
+        .images {
+            height:75px;
+            width:75px;
+            border:0px;
+            margin:15px 15px 0 0;
+        }
+
+        table, td
+        {
+            border-color: #e6e6e6;
+            border-style: solid;
+        }
+    </style>
     <!-- JS -->
     <script src="../js/common/smartNavbar.js"></script>
     <script src="../js/common/smartFooter.js"></script>
@@ -50,6 +105,29 @@
 
 
         });
+
+        function imagesSelected(myFiles) {
+            for (var i = 0, f; f = myFiles[i]; i++) {
+                var imageReader = new FileReader();
+                imageReader.onload = (function(aFile) {
+                    return function(e) {
+                        var span = document.createElement('span');
+                        span.innerHTML = ['<img class="images" src="', e.target.result,'" title="', aFile.name, '"/>'].join('');
+                        document.getElementById('thumbs').insertBefore(span, null);
+                    };
+                })(f);
+                imageReader.readAsDataURL(f);
+            }
+        }
+
+        function dropIt(e) {
+            imagesSelected(e.dataTransfer.files);
+            e.stopPropagation();
+            e.preventDefault();
+        }
+
+        $('input[type=file]').bootstrapFileInput();
+        $('.file-inputs').bootstrapFileInput();
     </script>
 
 </head>
