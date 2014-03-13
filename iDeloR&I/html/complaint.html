@@ -24,23 +24,17 @@
 <!-- CSS -->
 <link href="../css/common/common.css" rel="stylesheet">
 <link href="../css/common/navbar-fixed-top.css" rel="stylesheet">
-<style>
-dl>dt {
-	font-size: 18px !important;
-	font-weight: bolder;
-}
-
-dl>dd {
-	font-size: 16px !important;
-	font-weight: lighter;
-	padding-left: 30px;
-}
-</style>
+<!-- <link href="../css/common/metro-bootstrap.css" rel="stylesheet"> -->
 
 <!-- JS -->
 <script src="../js/common/smartNavbar.js"></script>
 <script src="../js/common/smartFooter.js"></script>
 
+<script>
+	$(document).ready(function() {
+		$("#ajax-content").load("includes/complaint/content.html");
+	});
+</script>
 </head>
 
 <body>
@@ -48,36 +42,10 @@ dl>dd {
 	<div class="container">
 		<ol class="breadcrumb">
 			<li><a href="allCitizens.html">All Citizens</a></li>
-			<li class="active">Sad Frog</li>
+			<li><a href="citizen.html">Sad Frog</a></li>
+			<li><a href="complaint.hmtl">Complaints</a></li>
+			<li class="active">Complaint #1</li>
 		</ol>
-
-		<div class="row">
-			<div class="col-md-3">
-				<img src="../img/citizen/sadfrog.png" height="400px" width="300px"
-					alt="..." class="img-thumbnail">
-			</div>
-			<div class="col-md-9">
-				<h3>Citizen #323566778 (@sadfrg) profile</h3>
-				<hr>
-				<dl>
-					<dt>Name:</dt>
-					<dd>Le Sad Frog</dd>
-					<dt>Sex:</dt>
-					<dd>Male</dd>
-					<dt>Date Of Birth:</dt>
-					<dd>15.11.1992</dd>
-					<dt>Address:</dt>
-					<dd>Streets Of Mustamae, Tallinn</dd>
-				</dl>
-				<p>
-					<a href="allComplaints.html"
-						class="btn btn-primary btn-lg">View His Complaints (3)</a> &nbsp;
-					<button type="button" disabled class="btn btn-default btn-lg">View
-						Complaints On Him</button>
-				</p>
-			</div>
-		</div>
-
 		<hr>
 		<div id="ajax-footer"></div>
 	</div>

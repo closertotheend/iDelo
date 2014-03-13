@@ -20,7 +20,7 @@ $(document).ready(function() {
 			markNavbarMenuSection();
 			appendRoleToLinks(role);
 			$("li#citizen-registry").hide();
-			$("li#all-complaints").hide();
+			$("li#all-citizens").hide();
 		});
 	}
 
@@ -41,8 +41,8 @@ function markNavbarMenuSection() {
 	case "newComplaint.html":
 		$("li#user-new-complaint").addClass("active");
 		break;
-	case "allComplaints.html":
-		$("li#all-complaints").addClass("active");
+	case "allCitizens.html":
+		$("li#all-citizens").addClass("active");
 		break;
 	default:
 		break;
