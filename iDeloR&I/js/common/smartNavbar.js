@@ -13,8 +13,8 @@ $(document).ready(function() {
 	} else {
 		$("#ajax-navbar").load("includes/common/navbar.html", function() {
 			markNavbarMenuSection();
-			$("li#citizen-registry").hide();
-			$("li#all-citizens").hide();
+//			$("li#citizen-registry").hide();
+//			$("li#all-citizens").hide();
 			appendRoleToLinks(role);
 		});
 	}

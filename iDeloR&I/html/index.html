@@ -13,72 +13,93 @@
 <!-- MODULES -->
 <script src="../libs/jquery/jquery.min.js"></script>
 <script src="../libs/bootstrap/js/bootstrap.min.js"></script>
-
 <link href="../libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../libs/tags/tagmanager.css" rel="stylesheet">
+<script src="../libs/angular/angular.min.js"></script>
+<script src="../libs/angular/angular-route.min.js"></script>
+<script src="../libs/datetimepicker/jquery.datetimepicker.js"></script>
+<script src="../libs/bootstrap-tags/js/bootstrap-tags.js"></script>
+<link href="../libs/datetimepicker/jquery.datetimepicker.css"
+	rel="stylesheet">
+<link href="../libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link type="text/css"
+	href="../libs/bootstrap-tags/css/bootstrap-tags.css" rel="stylesheet" />
+
 
 
 <!-- CSS -->
 <link href="../css/common/common.css" rel="stylesheet">
 <link href="../css/common/navbar-fixed-top.css" rel="stylesheet">
-<!-- <link href="../css/common/metro-bootstrap.css" rel="stylesheet"> -->
 
 <!-- JS -->
+<script src="../js/common/mapUtil.js"></script>
 <script src="../js/common/smartNavbar.js"></script>
 <script src="../js/common/smartFooter.js"></script>
+<script src="../js/app.js"></script>
+<script src="../js/controllers.js"></script>
+
+<script>
+        var crimeTags;
+        var mapLng;
+        var mapLtd;
+        $(document).ready($.getJSON("json/complaints.json", function (data) {
+
+            complaintInfo = '<div class="row"><div class="col-md-9">';
+            var complaint = data['complaints'][0];
+            complaintInfo += '<dl><dt>Episode:</dt><dd>' + complaint.episode + '</dd>';
+            complaintInfo += '<dt>Date & Time:</dt><dd>' + complaint.dateTime + '</dd>';
+            complaintInfo += '<dt>Tags:</dt><dd><div id="readOnlyTags" class="bootstrap-tags bootstrap-3">';
+            complaintInfo += '<div class="tags">'
+
+            for (i = 0; i < complaint.tags.length; i++) {
+                complaintInfo += '<div class="tag label btn-info md"> <span>&nbsp;&nbsp; ' + complaint.tags[i] + '&nbsp;&nbsp;</span>      </div>'
+            }
+
+            complaintInfo += '</div></div></dd><br><br>';
+            complaintInfo += '<dt>Description:</dt><dd>' + complaint.description +'</dd>'
+
+            mapLtd = complaint.location.lat;
+            mapLng = complaint.location.lng;
+
+            complaintInfo += '<dt>Location:</dt><dd><div id="map_canvas"></div></dd>'
+
+            complaintInfo += '<dt>Images:<dd><div class="row">';
+
+            for ( i = 0; i < complaint.images.length; i++) {
+                complaintInfo += '<div class="col-xs-3"><a href="' + complaint.images[i] +'" class="thumbnail" target="_blank"><img class="img-responsive" src="' +  complaint.images[i] +'"></a></div>';
+            }
+            complaintInfo += '</div></dd></dt>'
+            complaintInfo +=  '</dl></div>' ;
+
+
+            loadScript();
+            $('#complaint').append(complaintInfo);
+
+        }));
+
+        function loadScript() {
+            var script = document.createElement('script');
+            script.type = 'text/javascript';
+
+            script.src = 'https://maps.googleapis.com/maps/api/js?v=AIzaSyCzYjvCXkNylxgzNlWHmuWwSmJmWeqm61k&sensor=false&' +
+                    'callback=loadMapWrapper';
+            document.body.appendChild(script);
+        }
+        // workaround to place into callback
+        function loadMapWrapper() {
+            initDisplayMap(mapLtd, mapLng);
+        }
+</script>
 </head>
 
 <body>
-	<div id="ajax-navbar"></div>
 	<div class="container">
-
-		<!-- Main component for a primary marketing message or call to action -->
-		<div class="jumbotron">
-			<h1>Welcome to iDelo!</h1>
-
-			<p>Long live Molvania! Tired of kitchen dissidents and sofa
-				philosophers? Here you can commit justice for your nasty neighbour!
-				Do not be shy, and write as much as possible!</p>
-			<p>
-				<a class="btn btn-lg btn-primary" href="newComplaint.html"
-					role="button">Compose a complaint &raquo;</a>
-			</p>
+		<ng-include src="'includes/common/navbar.html'"></ng-include>
+		<div class="view-container">
+			<div ng-view class="view-frame"></div>
 		</div>
-
-		<div class="row">
-			<div class="col-lg-4">
-				<h2>Most severe complaints</h2>
-				<ul>
-					<li><a href="#">Blasphemous talks in public place</a></li>
-					<li><a href="#">Anti-government rhetoric</a></li>
-					<li><a href="#">Desertion from the army service</a></li>
-				</ul>
-				<p>
-					<a class="btn btn-default" href="#">View details &raquo;</a>
-				</p>
-			</div>
-			<!-- /.col-lg-4 -->
-			<div class="col-lg-4">
-				<h2>Vote for execution</h2>
-				<p>
-					<a class="btn btn-default" href="#">View details &raquo;</a>
-				</p>
-			</div>
-			<!-- /.col-lg-4 -->
-			<div class="col-lg-4">
-				<h2>Heil teh great leader!</h2>
-
-				<p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in,
-					egestas eget quam. Vestibulum id ligula porta felis euismod semper.</p>
-
-				<p>
-					<a class="btn btn-default" href="#">View details &raquo;</a>
-				</p>
-			</div>
-			<!-- /.col-lg-4 -->
-		</div>
-
 		<hr>
-		<div id="ajax-footer"></div>
+		<ng-include src="'includes/common/footer.html'"></ng-include>
 	</div>
 </body>
 </html>

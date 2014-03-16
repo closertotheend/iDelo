@@ -1,33 +1,10 @@
-<!DOCTYPE html>
-<html  ng-app="iDeloApp" lang="en">
-<head>
-    <title>Welcome to Molvania iDelo!</title>
-
-    <!-- META -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="Roman Kaskman & Ilja Gužovski">
-    <link rel="shortcut icon" href="../assets/ico/favicon.png">
-
-    <script src="../libs/jquery/jquery.min.js"></script>
-    <!--<script src='http://code.jquery.com/jquery-1.9.1.min.js'></script>-->
-
-    <script src="../libs/bootstrap/js/bootstrap.min.js"></script>
-    <!--<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>-->
-    <script src="../libs/bootstrap-tags/js/bootstrap-tags.js"></script>
-
-    <link href="../libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link type="text/css" href="../libs/bootstrap-tags/css/bootstrap-tags.css" rel="stylesheet" />
-
-    <!-- CSS -->
-    <link href="../css/common/common.css" rel="stylesheet">
-    <link href="../css/common/navbar-fixed-top.css" rel="stylesheet">
-    <!--JS-->
-    <script src="../js/common/mapUtil.js"></script>
-    <script src="../js/common/smartNavbar.js"></script>
-    <script src="../js/common/smartFooter.js"></script>
-
+<ol class="breadcrumb">
+	<li><a href="allCitizens.html">All Citizens</a></li>
+	<li><a href="citizen.html">Sad Frog</a></li>
+	<li><a href="allComplaints.html">Complaints</a></li>
+	<li class="active">Complaint #1</li>
+</ol>
+<div id="complaint" class="container">
     <style>
         .violation-img {
             width : 300px;
@@ -35,25 +12,55 @@
         }
     </style>
     <script>
-        $(document).ready(function () {
-            $("#ajax-content").load("includes/complaint/content.html", function () {
-            });
-        });
-    </script>
-</head>
+        var crimeTags;
+        var mapLng;
+        var mapLtd;
+        $(document).ready($.getJSON("json/complaints.json", function (data) {
 
-<body>
-<div id="ajax-navbar"></div>
-<div class="container">
-    <ol class="breadcrumb">
-        <li><a href="allCitizens.html">All Citizens</a></li>
-        <li><a href="citizen.html">Sad Frog</a></li>
-        <li><a href="allComplaints.html">Complaints</a></li>
-        <li class="active">Complaint #1</li>
-    </ol>
-    <div id="ajax-content"></div>
-    <hr>
-    <div id="ajax-footer"></div>
+            complaintInfo = '<div class="row"><div class="col-md-9">';
+            var complaint = data['complaints'][0];
+            complaintInfo += '<dl><dt>Episode:</dt><dd>' + complaint.episode + '</dd>';
+            complaintInfo += '<dt>Date & Time:</dt><dd>' + complaint.dateTime + '</dd>';
+            complaintInfo += '<dt>Tags:</dt><dd><div id="readOnlyTags" class="bootstrap-tags bootstrap-3">';
+            complaintInfo += '<div class="tags">'
+
+            for (i = 0; i < complaint.tags.length; i++) {
+                complaintInfo += '<div class="tag label btn-info md"> <span>&nbsp;&nbsp; ' + complaint.tags[i] + '&nbsp;&nbsp;</span>      </div>'
+            }
+
+            complaintInfo += '</div></div></dd><br><br>';
+            complaintInfo += '<dt>Description:</dt><dd>' + complaint.description +'</dd>'
+
+            mapLtd = complaint.location.lat;
+            mapLng = complaint.location.lng;
+
+            complaintInfo += '<dt>Location:</dt><dd><div id="map_canvas"></div></dd>'
+
+            complaintInfo += '<dt>Images:<dd><div class="row">';
+
+            for ( i = 0; i < complaint.images.length; i++) {
+                complaintInfo += '<div class="col-xs-3"><a href="' + complaint.images[i] +'" class="thumbnail" target="_blank"><img class="img-responsive" src="' +  complaint.images[i] +'"></a></div>';
+            }
+            complaintInfo += '</div></dd></dt>'
+            complaintInfo +=  '</dl></div>' ;
+
+
+            loadScript();
+            $('#complaint').append(complaintInfo);
+
+        }));
+
+        function loadScript() {
+            var script = document.createElement('script');
+            script.type = 'text/javascript';
+
+            script.src = 'https://maps.googleapis.com/maps/api/js?v=AIzaSyCzYjvCXkNylxgzNlWHmuWwSmJmWeqm61k&sensor=false&' +
+                    'callback=loadMapWrapper';
+            document.body.appendChild(script);
+        }
+        // workaround to place into callback
+        function loadMapWrapper() {
+            initDisplayMap(mapLtd, mapLng);
+        }
+    </script>
 </div>
-</body>
-</html>
