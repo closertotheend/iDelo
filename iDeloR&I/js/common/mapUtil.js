@@ -9,7 +9,7 @@ function initMap() {
         center: startLocation,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
-    map = new google.maps.Map($("#map_canvas")[0], mapOptions);
+    map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
 
     google.maps.event.addListener(map, "click", function (event) {
         placeMarker(event.latLng, map, markers);
@@ -35,4 +35,21 @@ function deleteOverlays(marker) {
         }
         marker.length = 0;
     }
+}
+
+function initDisplayMap(lat, lng) {
+    var map;
+    //Tallinn for now
+    var startLocation = new google.maps.LatLng(lat, lng);
+    var mapOptions = {
+        zoom: 10,
+        center: startLocation,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+
+    var marker = new google.maps.Marker({
+        position: startLocation,
+        map: map
+    });
 }

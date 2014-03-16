@@ -12,17 +12,16 @@
 
     <!-- MODULES -->
     <script src="../libs/jquery/jquery.min.js"></script>
+    <!--<script src='http://code.jquery.com/jquery-1.9.1.min.js'></script>-->
+
     <script src="../libs/bootstrap/js/bootstrap.min.js"></script>
+    <!--<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>-->
     <script src="../libs/datetimepicker/jquery.datetimepicker.js"></script>
-    <script src="../libs/tags/tagmanager.js"></script>
-    <script src="../libs/tags/typeahead.bundle.js"></script>
-    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <script src="../libs/bootstrap-tags/js/bootstrap-tags.js"></script>
 
     <link href="../libs/datetimepicker/jquery.datetimepicker.css" rel="stylesheet">
-    <link href="../libs/tags/tagmanager.css" rel="stylesheet">
     <link href="../libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../libs/bootstrap/css/bootstrap-theme.min.css"
-          rel="stylesheet">
+    <link type="text/css" href="../libs/bootstrap-tags/css/bootstrap-tags.css" rel="stylesheet" />
 
     <!-- CSS -->
     <link href="../css/common/common.css" rel="stylesheet">
@@ -92,18 +91,7 @@
         $(document).ready(function () {
             $("#ajax-content").load("includes/newComplaint/content.html", function () {
                 $('#datetimepicker').datetimepicker();
-                var tagApi = jQuery("#inputCrimeType").tagsManager({
-                    prefilled: ["Blasphemy", "Anti-government talks"]
-                });
-
-                jQuery("#inputCrimeType").typeahead({
-                    //TODO: prefetch values for autocomplete
-                }).on('typeahead:selected', function (e, d) {
-                    tagApi.tagsManager("pushTag", d.value);
-                });
             });
-
-
         });
 
         function imagesSelected(myFiles) {
@@ -128,11 +116,12 @@
 
         $('input[type=file]').bootstrapFileInput();
         $('.file-inputs').bootstrapFileInput();
+
     </script>
 
 </head>
 
-<body onload=initMap()>
+<body>
 <div id="ajax-navbar"></div>
 <div class="container">
 
