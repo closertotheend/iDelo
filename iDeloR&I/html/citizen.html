@@ -14,6 +14,8 @@
 <script src="../libs/jquery/jquery.min.js"></script>
 <script src="../libs/bootstrap/js/bootstrap.min.js"></script>
 <script src="../libs/datetimepicker/jquery.datetimepicker.js"></script>
+<script src="../libs/angular/angular.min.js"></script>
+<script src="../libs/angular/angular-route.min.js"></script>
 
 <link href="../libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <link href="../libs/bootstrap/css/bootstrap-theme.min.css"
@@ -22,15 +24,33 @@
 <!-- CSS -->
 <link href="../css/common/common.css" rel="stylesheet">
 <link href="../css/common/navbar-fixed-top.css" rel="stylesheet">
+<style>
+dl>dt {
+	font-size: 18px !important;
+	font-weight: bolder;
+}
 
+dl>dd {
+	font-size: 16px !important;
+	font-weight: lighter;
+	padding-left: 30px;
+}
+</style>
 
 <!-- JS -->
 <script src="../js/common/smartNavbar.js"></script>
 <script src="../js/common/smartFooter.js"></script>
+<script src="../js/app.js"></script>
+<script src="../js/controllers.js"></script>
 
 </head>
 
 <body>
+
+	<div class="view-container">
+		<div ng-view class="view-frame"></div>
+	</div>
+	
 	<div id="ajax-navbar"></div>
 	<div class="container">
 		<ol class="breadcrumb">
@@ -57,8 +77,8 @@
 					<dd>Streets Of Mustamae, Tallinn</dd>
 				</dl>
 				<p>
-					<a href="allComplaints.html"
-						class="btn btn-primary btn-lg">View His Complaints (3)</a> &nbsp;
+					<a href="#/allComplaints" class="btn btn-primary btn-lg">View
+						His Complaints (3)</a> &nbsp;
 					<button type="button" disabled class="btn btn-default btn-lg">View
 						Complaints On Him</button>
 				</p>

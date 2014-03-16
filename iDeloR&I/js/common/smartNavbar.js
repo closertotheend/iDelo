@@ -8,12 +8,14 @@ $(document).ready(function() {
 			markNavbarMenuSection();
 			$("li#user-complaints").hide();
 			$("li#user-new-complaint").hide();
+			appendRoleToLinks(role);
 		});
 	} else {
 		$("#ajax-navbar").load("includes/common/navbar.html", function() {
 			markNavbarMenuSection();
 			$("li#citizen-registry").hide();
 			$("li#all-citizens").hide();
+			appendRoleToLinks(role);
 		});
 	}
 
@@ -36,6 +38,15 @@ function markNavbarMenuSection() {
 	default:
 		break;
 	}
+}
+
+function appendRoleToLinks(role) {
+	$("a").each(function() {
+		var _href = $(this).attr("href");
+		if (_href.indexOf("#") === -1) {
+			$(this).attr("href", _href + '?role=' + role);
+		}
+	});
 }
 
 function getUrlVars() {
