@@ -1,118 +1,70 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<title>Welcome to Molvania iDelo!</title>
 
-<!-- META -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
-<meta name="author" content="Roman Kaskman & Ilja Gužovski">
-<link rel="shortcut icon" href="../assets/ico/favicon.png">
-
-<!-- MODULES -->
-<script src="../libs/jquery/jquery.min.js"></script>
-<script src="../libs/bootstrap/js/bootstrap.min.js"></script>
-<script src="../libs/datetimepicker/jquery.datetimepicker.js"></script>
-<script src="../libs/tags/tagmanager.js"></script>
-<script src="../libs/tags/typeahead.bundle.js"></script>
-<script type="text/javascript"
-	src="http://maps.google.com/maps/api/js?sensor=false"></script>
-
-<link href="../libs/datetimepicker/jquery.datetimepicker.css"
-	rel="stylesheet">
-<link href="../libs/tags/tagmanager.css" rel="stylesheet">
-<link href="../libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="../libs/bootstrap/css/bootstrap-theme.min.css"
-	rel="stylesheet">
-<script src="../libs/angular/angular.min.js"></script>
-<script src="../libs/angular/angular-route.min.js"></script>
-
-<!-- CSS -->
-<link href="../css/common/common.css" rel="stylesheet">
-<link href="../css/common/navbar-fixed-top.css" rel="stylesheet">
-
-<!-- JS -->
-<script src="../js/common/smartNavbar.js"></script>
-<script src="../js/common/smartFooter.js"></script>
-<script src="../js/common/mapUtil.js"></script>
-<script src="../js/app.js"></script>
-<script src="../js/controllers.js"></script>
-</head>
-
-<body ng-controller="ComplaintsCtrl">
-	<div id="ajax-navbar"></div>
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-12">
-				<ol class="breadcrumb">
-					<li><a href="allCitizens.html">All Citizens</a></li>
-					<li><a href="citizen.html">Sad Frog</a></li>
-					<li class="active">Complaints</li>
-				</ol>
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="col-sm-12">
-				<form class="form-horizontal" role="form">
-					<div class="form-group">
-						<label for="inputEmail3" class="col-sm-1 control-label">Search
-							: </label>
-						<div class="col-sm-3">
-							<input ng-model="query" type="text" class="form-control"
-								placeholder="Type To Search">
-
-							<!-- 					<select ng-model="type"> -->
-							<!-- 						<option selected="true" value="">All</option> -->
-							<!-- 						<option ng-repeat="complaint in complaints" -->
-							<!-- 							value="{{complaint.type}}">{{complaint.type}}</option> -->
-							<!-- 					</select> -->
-						</div>
-						<label for="inputEmail3" class="col-sm-1 control-label">In
-							: </label>
-						<div class="col-sm-3">
-							<select class="ng-pristine ng-valid form-control" ng-model="type">
-								<option selected="true" value="">All</option>
-								<option class="ng-scope ng-binding"
-									value="Anti-Government talks">Anti-Government talks</option>
-								<option class="ng-scope ng-binding"
-									value="Dangerous Philosophing">Dangerous Philosophing</option>
-								<option class="ng-scope ng-binding" value="BlackMailing">BlackMailing</option>
-							</select>
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-		<!-- 		</div> -->
-		<br>
-		<div class="row">
-			<div class="col-sm-12">
-				<table class="table table-striped ">
-					<thead>
-						<tr>
-							<th>#</th>
-							<th>Name</th>
-							<th>ID</th>
-							<th>Type Of Violation<span class="caret"></span></th>
-							<th>Action</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr
-							ng-repeat="complaint in complaints | filter:query | filter:type ">
-							<td>{{$index + 1}}</td>
-							<td>{{complaint.author.name}}</td>
-							<td>{{complaint.author.nick}}</td>
-							<td>{{complaint.type}}</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-		</div>
-		<hr>
-		<div id="ajax-footer"></div>
+<div class="row">
+	<div class="col-sm-12">
+		<ol class="breadcrumb">
+			<li><a href="allCitizens.html">All Citizens</a></li>
+			<li><a href="citizen.html">Sad Frog</a></li>
+			<li class="active">Complaints</li>
+		</ol>
 	</div>
-</body>
-</html>
+</div>
+
+<div class="row">
+	<div class="col-sm-12">
+		<form class="form-horizontal" role="form">
+			<div class="form-group">
+				<label for="inputEmail3" class="col-sm-1 control-label">Search
+					: </label>
+				<div class="col-sm-3">
+					<input ng-model="query" type="text" class="form-control"
+						placeholder="Type To Search">
+
+					<!-- 					<select ng-model="type"> -->
+					<!-- 						<option selected="true" value="">All</option> -->
+					<!-- 						<option ng-repeat="complaint in complaints" -->
+					<!-- 							value="{{complaint.type}}">{{complaint.type}}</option> -->
+					<!-- 					</select> -->
+				</div>
+				<label for="inputEmail3" class="col-sm-1 control-label">In :
+				</label>
+				<div class="col-sm-3">
+					<select class="ng-pristine ng-valid form-control" ng-model="type">
+						<option selected="true" value="">All</option>
+						<option class="ng-scope ng-binding" value="Anti-Government talks">Anti-Government
+							talks</option>
+						<option class="ng-scope ng-binding" value="Dangerous Philosophing">Dangerous
+							Philosophing</option>
+						<option class="ng-scope ng-binding" value="BlackMailing">BlackMailing</option>
+					</select>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+<!-- 		</div> -->
+<br>
+<div class="row">
+	<div class="col-sm-12">
+		<table class="table table-striped ">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Name</th>
+					<th>ID</th>
+					<th>Type Of Violation<span class="caret"></span></th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr
+					ng-repeat="complaint in complaints | filter:query | filter:type ">
+					<td>{{$index + 1}}</td>
+					<td>{{complaint.author.name}}</td>
+					<td>{{complaint.author.nick}}</td>
+					<td>{{complaint.type}}</td>
+					<td><a href="#complaint" class="btn btn-default">View Details</a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

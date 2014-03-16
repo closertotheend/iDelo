@@ -1,137 +1,153 @@
-<!DOCTYPE html>
-<html  ng-app="iDeloApp" lang="en">
-<head>
-    <title>Welcome to Molvania iDelo!</title>
+<style type="text/css">
+.tableheader {
+	background-color: #FFFFFF;
+	background-image: url(http://www.ibm.com/i/v16/t/sprites-t1.gif);
+	background-repeat: repeat-x;
+	background-position: 0px -545px;
+	padding-left: 10px;
+	font-weight: bold;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-bottom-width: 1px;
+	border-left-width: 0px;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: solid;
+	border-left-style: none;
+	border-top-color: #FFFFFF;
+	border-bottom-color: #cccccc;
+	font-size: 12px;
+}
 
-    <!-- META -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="Roman Kaskman & Ilja Gužovski">
-    <link rel="shortcut icon" href="../assets/ico/favicon.png">
+.tablepadding {
+	margin: 0px;
+	padding-top: 0px;
+	padding-right: 10px;
+	padding-bottom: 0px;
+	padding-left: 10px;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-bottom-width: 0px;
+	border-left-width: 0px;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
 
-    <!-- MODULES -->
-    <script src="../libs/jquery/jquery.min.js"></script>
-    <!--<script src='http://code.jquery.com/jquery-1.9.1.min.js'></script>-->
+.tableborder {
+	border: 1px solid #cccccc;
+}
 
-    <script src="../libs/bootstrap/js/bootstrap.min.js"></script>
-    <!--<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>-->
-    <script src="../libs/datetimepicker/jquery.datetimepicker.js"></script>
-    <script src="../libs/bootstrap-tags/js/bootstrap-tags.js"></script>
+.images {
+	height: 75px;
+	width: 75px;
+	border: 0px;
+	margin: 15px 15px 0 0;
+}
 
-    <link href="../libs/datetimepicker/jquery.datetimepicker.css" rel="stylesheet">
-    <link href="../libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link type="text/css" href="../libs/bootstrap-tags/css/bootstrap-tags.css" rel="stylesheet" />
+table,td {
+	border-color: #e6e6e6;
+	border-style: solid;
+}
+</style>
+<script>
+	function imagesSelected(myFiles) {
+		for (var i = 0, f; f = myFiles[i]; i++) {
+			var imageReader = new FileReader();
+			imageReader.onload = (function(aFile) {
+				return function(e) {
+					var span = document.createElement('span');
+					span.innerHTML = [ '<img class="images" src="', e.target.result,'" title="', aFile.name, '"/>' ]
+							.join('');
+					document.getElementById('thumbs').insertBefore(span, null);
+				};
+			})(f);
+			imageReader.readAsDataURL(f);
+		}
+	}
 
-    <!-- CSS -->
-    <link href="../css/common/common.css" rel="stylesheet">
-    <link href="../css/common/navbar-fixed-top.css" rel="stylesheet">
+	function dropIt(e) {
+		imagesSelected(e.dataTransfer.files);
+		e.stopPropagation();
+		e.preventDefault();
+	}
 
-    <style type="text/css">
-        .tableheader {
-            background-color: #FFFFFF;
-            background-image: url(http://www.ibm.com/i/v16/t/sprites-t1.gif);
-            background-repeat: repeat-x;
-            background-position: 0px -545px;
-            padding-left: 10px;
-            font-weight: bold;
-            border-top-width: 0px;
-            border-right-width: 0px;
-            border-bottom-width: 1px;
-            border-left-width: 0px;
-            border-top-style: none;
-            border-right-style: none;
-            border-bottom-style: solid;
-            border-left-style: none;
-            border-top-color: #FFFFFF;
-            border-bottom-color: #cccccc;
-            font-size: 12px;
-        }
-        .tablepadding {
-            margin: 0px;
-            padding-top: 0px;
-            padding-right: 10px;
-            padding-bottom: 0px;
-            padding-left: 10px;
-            border-top-width: 0px;
-            border-right-width: 0px;
-            border-bottom-width: 0px;
-            border-left-width: 0px;
-            border-top-style: none;
-            border-right-style: none;
-            border-bottom-style: none;
-            border-left-style: none;
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 12px;
-        }
+	$('input[type=file]').bootstrapFileInput();
+	$('.file-inputs').bootstrapFileInput();
+</script>
 
         .tableborder {
             border: 1px solid #cccccc;
         }
 
-        .images {
-            height:75px;
-            width:75px;
-            border:0px;
-            margin:15px 15px 0 0;
-        }
+<div class="jumbotron">
+	<form role="form" style="max-width: 45%;">
+		<h2 style="padding-bottom: 5%" class="form-signin-heading">Provide
+			the information about violation</h2>
+		<input class="form-control" type="text" placeholder="Episode name"
+			required autofocus> <input class="form-control"
+			id="datetimepicker" placeholder="Date & Time" required type="text">
 
-        table, td
-        {
-            border-color: #e6e6e6;
-            border-style: solid;
-        }
+		<div id="violationTags"></div>
+		<textarea class="form-control" required
+			placeholder="Violation details" rows="10" cols="40"
+			style="resize: none"></textarea>
+		<br> <label style="padding: 3px;">Mark violation
+			location:</label>
 
-        .violation-form {
-        max-width: 45%;
-        }
-    </style>
-    <!-- JS -->
-    <script src="../js/common/smartNavbar.js"></script>
-    <script src="../js/common/smartFooter.js"></script>
-    <script src="../js/common/mapUtil.js"></script>
+		<div id="map_canvas"></div>
+		<input type="hidden" required id="latFld"> <input
+			type="hidden" required id="lngFld"> <br>
 
-    <script>
-        $(document).ready(function () {
-            $("#ajax-content").load("includes/newComplaint/content.html", function () {
-                $('#datetimepicker').datetimepicker();
-            });
-        });
+		<div class="form-group">
+			<label style="padding: 3px;">Add violation images:</label>
+			<table width="100%" border="1" cellspacing=0 cellpadding=5>
+				<tr>
+					<td align="left" height="105" style="background-color: white"
+						ondragenter="return false" ondragover="return false"
+						ondrop="dropIt(event)"><output id="thumbs"></output></td>
+				</tr>
+				<tr>
+					<td>
+						<p style="font-size: inherit">
+							Drag & drop or choose images from your local file system: <input
+								type="file" id="input" size="10" multiple="true"
+								onchange="imagesSelected(this.files)" />
+						</p>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+		<hr>
+	</form>
+	<script>
+		$(function() {
+			$("#violationTags").tags(
+					{
+						restrictTo : [ "Non-patriotic behavior",
+								"Ultra-violence", "Urinating in public" ],
+						suggestions : [ "Non-patriotic behavior",
+								"Ultra-violence", "Urinating in public" ],
+						promptText : "   Violation tags",
+						suggestOnClick : true
+					});
 
-        function imagesSelected(myFiles) {
-            for (var i = 0, f; f = myFiles[i]; i++) {
-                var imageReader = new FileReader();
-                imageReader.onload = (function(aFile) {
-                    return function(e) {
-                        var span = document.createElement('span');
-                        span.innerHTML = ['<img class="images" src="', e.target.result,'" title="', aFile.name, '"/>'].join('');
-                        document.getElementById('thumbs').insertBefore(span, null);
-                    };
-                })(f);
-                imageReader.readAsDataURL(f);
-            }
-        }
+			loadScript();
+		});
 
-        function dropIt(e) {
-            imagesSelected(e.dataTransfer.files);
-            e.stopPropagation();
-            e.preventDefault();
-        }
+		function loadScript() {
+			var script = document.createElement('script');
+			script.type = 'text/javascript';
 
-        $('input[type=file]').bootstrapFileInput();
-        $('.file-inputs').bootstrapFileInput();
-
-    </script>
-
-</head>
-
-<body>
-<div id="ajax-navbar"></div>
-<div class="container">
-
-    <div id="ajax-content"></div>
-    <hr>
-    <div id="ajax-footer"></div>
+			script.src = 'https://maps.googleapis.com/maps/api/js?v=AIzaSyCzYjvCXkNylxgzNlWHmuWwSmJmWeqm61k&sensor=false&'
+					+ 'callback=initMap';
+			document.body.appendChild(script);
+		}
+	</script>
 </div>
 </body>
 </html>

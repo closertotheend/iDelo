@@ -1,34 +1,3 @@
-<!DOCTYPE html>
-<html  ng-app="iDeloApp" lang="en">
-<head>
-<title>Welcome to Molvania iDelo!</title>
-
-<!-- META -->
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
-<meta name="author" content="Roman Kaskman & Ilja Gužovski">
-<link rel="shortcut icon" href="../assets/ico/favicon.png">
-
-<!-- MODULES -->
-<script src="../libs/jquery/jquery.min.js"></script>
-<script src="../libs/bootstrap/js/bootstrap.min.js"></script>
-<script src="../libs/datetimepicker/jquery.datetimepicker.js"></script>
-
-<link href="../libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-<!-- CSS -->
-<link href="../css/common/common.css" rel="stylesheet">
-<link href="../css/common/navbar-fixed-top.css" rel="stylesheet">
-<style type="text/css">
-.cool-test{
-
-}
-</style>
-
-<!-- JS -->
-<script src="../js/common/smartNavbar.js"></script>
-<script src="../js/common/smartFooter.js"></script>
 <script>
 	$(document).ready(function() {
 		$('#myTab li a:first').tab('show');
@@ -38,123 +7,118 @@
 		});
 	});
 </script>
-</head>
+<ul class="nav nav-tabs" id="myTab">
+	<li><a href="#best-match" data-toggle="tab"><h5>Best
+				Matches</h5></a></li>
+	<li><a href="#detailed-search" data-toggle="tab"><h5>Detailed
+				Search</h5></a></li>
+</ul>
 
-<body>
-	<div id="ajax-navbar"></div>
-	<div class="container">
-		<ul class="nav nav-tabs" id="myTab">
-			<li><a href="#best-match" data-toggle="tab"><h5>Best Matches</h5></a></li>
-			<li><a href="#detailed-search" data-toggle="tab"><h5>Detailed
-					Search</h5></a></li>
-		</ul>
-
-		<div class="tab-content">
-			<div class="tab-pane" id="best-match">
-				<h2>People</h2>
-				<div class="cool-text well well-sm"><a href="citizen.html">>> Sad Frog (#2342345667)</a></div>
-				<h2>Violations</h2>
-				<div class="cool-text well well-sm"><a href="complaint.html">>> Dangerous Rhetorics From Sofa (Complaint #2342345667)</a></div>
-			</div>
-			<div class="tab-pane" id="detailed-search">
-				<h2>People</h2>
-				<hr>
-				<form class="form-horizontal" role="form">
-					<div class="form-group">
-						<label for="inputEmail3" class="col-sm-2 control-label">Name</label>
-						<div class="col-sm-4">
-							<input type="email" class="form-control" id="inputEmail3"
-								placeholder="Name" >
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="inputEmail3" class="col-sm-2 control-label">Sex</label>
-						<div class="col-sm-4">
-							<div class="radio">
-								<label> <input type="radio" name="optionsRadios"
-									id="optionsRadios1" value="option1" checked>Male
-								</label>
-							</div>
-							<div class="radio">
-								<label> <input type="radio" name="optionsRadios"
-									id="optionsRadios2" value="option2">Female
-								</label>
-							</div>
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="inputEmail3" class="col-sm-2 control-label">Date
-							Of Birth</label>
-						<div class="col-sm-4">
-							<input type="email" class="form-control" id="inputEmail3"
-								placeholder="Date Of Birth">
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="inputEmail3" class="col-sm-2 control-label">Address</label>
-						<div class="col-sm-4">
-							<input type="email" class="form-control" id="inputEmail3"
-								placeholder="Address">
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-sm-offset-2 col-sm-10">
-							<button type="submit" class="btn btn-default">Search</button>
-						</div>
-					</div>
-				</form>
-				
-				<h2>Violations</h2>
-				<hr>
-				<form class="form-horizontal" role="form">
-					<div class="form-group">
-						<label for="inputEmail3" class="col-sm-2 control-label">Episode Name</label>
-						<div class="col-sm-4">
-							<input type="email" class="form-control" id="inputEmail3"
-								placeholder="Episode Name" >
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="inputEmail3" class="col-sm-2 control-label">Date</label>
-						<div class="col-sm-4">
-							<input type="email" class="form-control" id="inputEmail3"
-								placeholder="Date">
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="inputEmail3" class="col-sm-2 control-label">Tags</label>
-						<div class="col-sm-4">
-							<input type="email" class="form-control" id="inputEmail3"
-								placeholder="Tags">
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="inputEmail3" class="col-sm-2 control-label">Location</label>
-						<div class="col-sm-4">
-							<input type="email" class="form-control" id="inputEmail3"
-								placeholder="Location">
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="inputEmail3" class="col-sm-2 control-label">Description</label>
-						<div class="col-sm-4">
-							<input type="email" class="form-control" id="inputEmail3"
-								placeholder="Description">
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col-sm-offset-2 col-sm-10">
-							<button type="submit" class="btn btn-default">Search</button>
-						</div>
-					</div>
-				</form>
-
-			</div>
+<div class="tab-content">
+	<div class="tab-pane" id="best-match">
+		<h2>People</h2>
+		<div class="cool-text well well-sm">
+			<a href="citizen.html">>> Sad Frog (#2342345667)</a>
 		</div>
-
-
-		<hr>
-		<div id="ajax-footer"></div>
+		<h2>Violations</h2>
+		<div class="cool-text well well-sm">
+			<a href="complaint.html">>> Dangerous Rhetorics From Sofa
+				(Complaint #2342345667)</a>
+		</div>
 	</div>
-</body>
-</html>
+	<div class="tab-pane" id="detailed-search">
+		<h2>People</h2>
+		<hr>
+		<form class="form-horizontal" role="form">
+			<div class="form-group">
+				<label for="inputEmail3" class="col-sm-2 control-label">Name</label>
+				<div class="col-sm-4">
+					<input type="email" class="form-control" id="inputEmail3"
+						placeholder="Name">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputEmail3" class="col-sm-2 control-label">Sex</label>
+				<div class="col-sm-4">
+					<div class="radio">
+						<label> <input type="radio" name="optionsRadios"
+							id="optionsRadios1" value="option1" checked>Male
+						</label>
+					</div>
+					<div class="radio">
+						<label> <input type="radio" name="optionsRadios"
+							id="optionsRadios2" value="option2">Female
+						</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputEmail3" class="col-sm-2 control-label">Date
+					Of Birth</label>
+				<div class="col-sm-4">
+					<input type="email" class="form-control" id="inputEmail3"
+						placeholder="Date Of Birth">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputEmail3" class="col-sm-2 control-label">Address</label>
+				<div class="col-sm-4">
+					<input type="email" class="form-control" id="inputEmail3"
+						placeholder="Address">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" class="btn btn-default">Search</button>
+				</div>
+			</div>
+		</form>
+
+		<h2>Violations</h2>
+		<hr>
+		<form class="form-horizontal" role="form">
+			<div class="form-group">
+				<label for="inputEmail3" class="col-sm-2 control-label">Episode
+					Name</label>
+				<div class="col-sm-4">
+					<input type="email" class="form-control" id="inputEmail3"
+						placeholder="Episode Name">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputEmail3" class="col-sm-2 control-label">Date</label>
+				<div class="col-sm-4">
+					<input type="email" class="form-control" id="inputEmail3"
+						placeholder="Date">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputEmail3" class="col-sm-2 control-label">Tags</label>
+				<div class="col-sm-4">
+					<input type="email" class="form-control" id="inputEmail3"
+						placeholder="Tags">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputEmail3" class="col-sm-2 control-label">Location</label>
+				<div class="col-sm-4">
+					<input type="email" class="form-control" id="inputEmail3"
+						placeholder="Location">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="inputEmail3" class="col-sm-2 control-label">Description</label>
+				<div class="col-sm-4">
+					<input type="email" class="form-control" id="inputEmail3"
+						placeholder="Description">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" class="btn btn-default">Search</button>
+				</div>
+			</div>
+		</form>
+
+	</div>
+</div>
