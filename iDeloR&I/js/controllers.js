@@ -60,17 +60,16 @@ iDeloApp.controller('LoginCtrl', [ '$scope', 'Auth', function($scope, Auth) {
 
 iDeloApp.controller('mainCtrl', [ '$scope', 'Auth', '$location',
 		function($scope, Auth, $location) {
-
 			$scope.$watch(Auth.isLoggedIn, function(value, oldValue) {
 
 				if (!value && oldValue) {
 					console.log("Disconnect");
-					$location.path('/login');
+					$location.path('/');
 				}
 
 				if (value) {
 					console.log("Connect")
-					$location.path('/login');
+					$location.path('/');
 				}
 
 			}, true);
