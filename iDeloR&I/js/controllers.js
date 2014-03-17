@@ -11,6 +11,17 @@ iDeloApp.controller('ComplaintsCtrl', [
 					});
 		} ]);
 
+iDeloApp.controller('MyComplaintsCtrl', [
+		'$scope',
+		'$routeParams',
+		'$http','Auth',
+		function($scope, $routeParams, $http, Auth) {
+			$http.get('json/complaints/' + Auth.getUser() + '.json').success(
+					function(data) {
+						$scope.complaints = data;
+					});
+		} ]);
+
 iDeloApp.controller('CitizensCtrl', [ '$scope', '$http',
 		function($scope, $http) {
 			$http.get('json/allCitizens.json').success(function(data) {
@@ -43,9 +54,23 @@ iDeloApp.controller('SearchCtrl', [ '$scope', '$routeParams', '$http',
 			}
 		} ]);
 
-iDeloApp.controller('AuthCtrl', [ '$scope', '$routeParams', '$http',
-		function($scope, $routeParams, $http) {
-			$http.get('json/search/0.json').success(function(data) {
-				$scope.result = data;
-			});
+iDeloApp.controller('LoginCtrl', [ '$scope', 'Auth', function($scope, Auth) {
+		Auth.setUser(12); // Update the state of the user in the app
+} ]);
+
+iDeloApp.controller('mainCtrl', [ '$scope', 'Auth', '$location',
+		function($scope, Auth, $location) {
+			$scope.$watch(Auth.isLoggedIn, function(value, oldValue) {
+
+				if (!value && oldValue) {
+					console.log("Disconnect");
+					$location.path('/');
+				}
+
+				if (value) {
+					console.log("Connect")
+					$location.path('/');
+				}
+
+			}, true);
 		} ]);

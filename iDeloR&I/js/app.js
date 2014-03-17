@@ -12,7 +12,7 @@ iDeloApp.config([ '$routeProvider', function($routeProvider) {
 		controller : 'CitizensCtrl'
 	}).when('/myComplaints', {
 		templateUrl : 'myComplaints.html',
-		controller : 'ComplaintsCtrl'
+		controller : 'MyComplaintsCtrl'
 	}).when('/newComplaint', {
 		templateUrl : 'newComplaint.html'
 	}).when('/citizen/:citizenId', {
@@ -29,6 +29,42 @@ iDeloApp.config([ '$routeProvider', function($routeProvider) {
 	}).when('/newComplaintType', {
         templateUrl : 'newCrimeTypeAddition.html'
     }).otherwise({
+	}).when('/asAdmin', {
+		templateUrl : 'indexInfo.html',
+		controller : 'LoginCtrl'
+	}).otherwise({
 		redirectTo : '/allComplaints'
 	});
 } ]);
+
+iDeloApp.factory('Auth', function() {
+	var user;
+	return {
+		setUser : function(aUser) {
+			user = aUser;
+		},
+		getUser : function() {
+			return user;
+		},
+		isLoggedIn : function() {
+			return (user) ? user : false;
+		}
+	}
+})
+
+iDeloApp.run([ '$rootScope', '$location', 'Auth',
+		function($rootScope, $location, Auth) {
+			$rootScope.$on('$routeChangeStart', function() {
+				if (!Auth.isLoggedIn()) {
+					Auth.setUser(0);
+					console.log('USER');
+					$("li#citizen-registry").hide();
+					$("li#all-citizens").hide();
+				} else if (Auth.getUser() === 12) {
+					$("li#citizen-registry").show();
+					$("li#all-citizens").show();
+					$("li#user-complaints").hide();
+					$("li#user-new-complaint").hide();
+				}
+			});
+		} ]);
