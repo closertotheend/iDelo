@@ -26,7 +26,9 @@ iDeloApp.config([ '$routeProvider', function($routeProvider) {
 	}).when('/search', {
 		templateUrl : 'search.html',
 		controller : 'SearchCtrl'
-	}).otherwise({
+	}).when('/newComplaintType', {
+        templateUrl : 'newCrimeTypeAddition.html'
+    }).otherwise({
 		redirectTo : '/allComplaints'
 	});
 } ]);
