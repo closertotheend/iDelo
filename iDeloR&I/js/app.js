@@ -12,7 +12,7 @@ iDeloApp.config([ '$routeProvider', function($routeProvider) {
 		controller : 'CitizensCtrl'
 	}).when('/myComplaints', {
 		templateUrl : 'myComplaints.html',
-		controller : 'ComplaintsCtrl'
+		controller : 'MyComplaintsCtrl'
 	}).when('/newComplaint', {
 		templateUrl : 'newComplaint.html'
 	}).when('/citizen/:citizenId', {
@@ -37,6 +37,9 @@ iDeloApp.factory('Auth', function() {
 		setUser : function(aUser) {
 			user = aUser;
 		},
+		getUser : function() {
+			return user;
+		},
 		isLoggedIn : function() {
 			return (user) ? user : false;
 		}
@@ -47,15 +50,13 @@ iDeloApp.run([ '$rootScope', '$location', 'Auth',
 		function($rootScope, $location, Auth) {
 			$rootScope.$on('$routeChangeStart', function() {
 				if (!Auth.isLoggedIn()) {
-					$(function() {
-						$("li#citizen-registry").hide();
-						$("li#all-citizens").hide();
-					});
-					console.log('DENY');
-					$location.path('/search');
+					Auth.setUser(0);
+					console.log('USER');
+					$("li#citizen-registry").hide();
+					$("li#all-citizens").hide();
 				} else {
-					console.log('ALLOW');
-					$location.path('/home');
+//					console.log('ALLOW');
+//					$location.path('/home');
 				}
 			});
 		} ]);

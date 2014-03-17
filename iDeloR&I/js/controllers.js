@@ -11,6 +11,17 @@ iDeloApp.controller('ComplaintsCtrl', [
 					});
 		} ]);
 
+iDeloApp.controller('MyComplaintsCtrl', [
+		'$scope',
+		'$routeParams',
+		'$http','Auth',
+		function($scope, $routeParams, $http, Auth) {
+			$http.get('json/complaints/' + Auth.getUser() + '.json').success(
+					function(data) {
+						$scope.complaints = data;
+					});
+		} ]);
+
 iDeloApp.controller('CitizensCtrl', [ '$scope', '$http',
 		function($scope, $http) {
 			$http.get('json/allCitizens.json').success(function(data) {
