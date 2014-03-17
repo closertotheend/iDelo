@@ -12,29 +12,29 @@ dl>dd {
 </style>
 <ol class="breadcrumb">
 	<li><a href="#allCitizens">All Citizens</a></li>
-	<li class="active">Sad Frog</li>
+	<li class="active">{{citizen.name}}</li>
 </ol>
 
 <div class="row">
 	<div class="col-md-3">
-		<img src="../img/citizen/sadfrog.png" height="400px" width="300px"
+		<img ng-src="../img/citizen/{{citizen.img}} " height="400px" width="300px"
 			alt="..." class="img-thumbnail">
 	</div>
 	<div class="col-md-9">
-		<h3>Citizen #323566778 (@sadfrg) profile</h3>
+		<h3>Citizen #{{citizen.number}} ({{citizen.nick}}) profile</h3>
 		<hr>
 		<dl>
 			<dt>Name:</dt>
-			<dd>Le Sad Frog</dd>
+			<dd>{{citizen.name}}</dd>
 			<dt>Sex:</dt>
-			<dd>Male</dd>
+			<dd>{{citizen.sex}}</dd>
 			<dt>Date Of Birth:</dt>
-			<dd>15.11.1992</dd>
+			<dd>{{citizen.dateOfBirth}}</dd>
 			<dt>Address:</dt>
-			<dd>Streets Of Mustamae, Tallinn</dd>
+			<dd>{{citizen.address}}</dd>
 		</dl>
 		<p>
-			<a href="#/allComplaints" class="btn btn-primary btn-lg">View His
+			<a href="#/complaints/{{citizen.id}}" class="btn btn-primary btn-lg">View His
 				Complaints (3)</a> &nbsp;
 			<button type="button" disabled class="btn btn-default btn-lg">View
 				Complaints On Him</button>

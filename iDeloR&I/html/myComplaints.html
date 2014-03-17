@@ -14,7 +14,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="complaint in complaints | filter:query | filter:type ">
+		<tr ng-repeat="complaint in complaints">
 			<td>{{$index + 1}}</td>
 			<td>{{complaint.author.name}}</td>
 			<td>{{complaint.author.nick}}</td>

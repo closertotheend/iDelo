@@ -4,8 +4,8 @@ var iDeloApp = angular.module('iDeloApp',
 iDeloApp.config([ '$routeProvider', function($routeProvider) {
 	$routeProvider.when('/', {
 		templateUrl : 'indexInfo.html',
-	}).when('/allComplaints', {
-		templateUrl : 'allComplaints.html',
+	}).when('/complaints/:citizenId', {
+		templateUrl : 'complaints.html',
 		controller : 'ComplaintsCtrl'
 	}).when('/allCitizens', {
 		templateUrl : 'allCitizens.html',
@@ -15,12 +15,17 @@ iDeloApp.config([ '$routeProvider', function($routeProvider) {
 		controller : 'ComplaintsCtrl'
 	}).when('/newComplaint', {
 		templateUrl : 'newComplaint.html',
-	}).when('/citizen', {
+	}).when('/citizen/:citizenId', {
 		templateUrl : 'citizen.html',
+		controller : 'CitizenCtrl'
 	}).when('/complaint', {
 		templateUrl : 'complaint.html',
+	}).when('/search/:query', {
+		templateUrl : 'search.html',
+		controller : 'SearchCtrl'
 	}).when('/search', {
 		templateUrl : 'search.html',
+		controller : 'SearchCtrl'
 	}).otherwise({
 		redirectTo : '/allComplaints'
 	});

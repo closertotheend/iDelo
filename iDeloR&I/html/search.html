@@ -1,11 +1,9 @@
 <script>
-	$(document).ready(function() {
 		$('#myTab li a:first').tab('show');
 		$('#myTab li a').click(function(e) {
 			e.preventDefault()
 			$(this).tab('show')
 		});
-	});
 </script>
 <ul class="nav nav-tabs" id="myTab">
 	<li><a href="#best-match" data-toggle="tab"><h5>Best
@@ -15,17 +13,18 @@
 </ul>
 
 <div class="tab-content">
+
 	<div class="tab-pane" id="best-match">
 		<h2>People</h2>
-		<div class="cool-text well well-sm">
-			<a href="citizen.html">>> Sad Frog (#2342345667)</a>
+		<div class="cool-text well well-sm" ng-repeat="person in result.persons">
+			<a href="citizen.html">>> {{person.name}} ({{person.nick}})</a>
 		</div>
 		<h2>Violations</h2>
-		<div class="cool-text well well-sm">
-			<a href="complaint.html">>> Dangerous Rhetorics From Sofa
-				(Complaint #2342345667)</a>
+		<div ng-repeat="violation in result.viloations" class="cool-text well well-sm">
+			<a href="#complaint.html">>> {{violation.name}} on {{violation.date}}</a>
 		</div>
 	</div>
+	
 	<div class="tab-pane" id="detailed-search">
 		<h2>People</h2>
 		<hr>

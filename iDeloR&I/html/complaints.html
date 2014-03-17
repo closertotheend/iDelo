@@ -3,7 +3,7 @@
 	<div class="col-sm-12">
 		<ol class="breadcrumb">
 			<li><a href="#allCitizens">All Citizens</a></li>
-			<li><a href="#citizen">Sad Frog</a></li>
+			<li><a href="#citizen/{{complaints.authorId}}">{{complaints.authorName}}</a></li>
 			<li class="active">Complaints</li>
 		</ol>
 	</div>
@@ -57,10 +57,10 @@
 			</thead>
 			<tbody>
 				<tr
-					ng-repeat="complaint in complaints | filter:query | filter:type ">
+					ng-repeat="complaint in complaints.list | filter:query | filter:type ">
 					<td>{{$index + 1}}</td>
-					<td>{{complaint.author.name}}</td>
-					<td>{{complaint.author.nick}}</td>
+					<td><a href="#citizen/{{complaint.person.id}}" >{{complaint.person.name}}</a></td>
+					<td>{{complaint.person.nick}}</td>
 					<td>{{complaint.type}}</td>
 					<td><a href="#complaint" class="btn btn-default">View Details</a></td>
 				</tr>
