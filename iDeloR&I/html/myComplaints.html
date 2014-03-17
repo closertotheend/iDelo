@@ -1,4 +1,3 @@
-
 <ol class="breadcrumb">
 	<li class="active">My Complaints</li>
 </ol>
@@ -15,27 +14,15 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr>
-			<td>1</td>
-			<td><a href="">Mark Otto</a></td>
-			<td><a href="">@mdo</a></td>
-			<td>Anti-Government talks</td>
-			<td><a href="complaint.html" class="btn btn-info btn-xs">Info
-					</button></td>
-		</tr>
-		<tr>
-			<td>2</td>
-			<td><a href="">Jacob Thornton</a></td>
-			<td><a href="">@fat</a></td>
-			<td>Dissidenting</td>
-			<td><button type="button" disabled class="btn btn-info btn-xs">Info</button></td>
-		</tr>
-		<tr>
-			<td>3</td>
-			<td><a href="">Larry the Bird</a></td>
-			<td><a href="">@twitter</a></td>
-			<td>Dangerous Rhetorics</td>
-			<td><button type="button" disabled class="btn btn-info btn-xs">Info</button></td>
+		<tr ng-repeat="complaint in complaints | filter:query | filter:type ">
+			<td>{{$index + 1}}</td>
+			<td>{{complaint.author.name}}</td>
+			<td>{{complaint.author.nick}}</td>
+			<td>{{complaint.type}}</td>
+			<td>{{complaint.date}}</td>
+			<td>{{complaint.status}}</td>
+			<td><a href="#complaint" class="btn btn-default">View
+					Details</a></td>
 		</tr>
 	</tbody>
 </table>
