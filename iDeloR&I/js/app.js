@@ -55,13 +55,13 @@ iDeloApp.run([ '$rootScope', '$location', 'Auth',
 				if (!Auth.isLoggedIn()) {
 					Auth.setUser(0);
 					console.log('USER');
-					$("li#citizen-registry").hide();
-					$("li#all-citizens").hide();
+					$("li#user-complaints").show();
+					$("li#user-new-complaint").show();
 				} else if (Auth.getUser() === 12) {
-					$("li#citizen-registry").show();
-					$("li#all-citizens").show();
 					$("li#user-complaints").hide();
 					$("li#user-new-complaint").hide();
+					$("li#citizen-registry").show();
+					$("li#all-citizens").show();
 				}
 			});
 		} ]);
