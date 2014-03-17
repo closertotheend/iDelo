@@ -37,8 +37,19 @@
         .help-inline {
             color : #ED5156;
         }
+         form {
+             max-width: 45%;
+         }
+         label {
+             padding: 3px;
+         }
+
+        .drop-area  {
+            background-color: white;
+        }
+
     </style>
-	<form role="form" style="max-width: 45%;" action="index.html" onsubmit="return(validateComplaintForm())" >
+	<form role="form" action="index.html" onsubmit="return(validateComplaintForm())" >
 		<h2 style="padding-bottom: 5%" class="form-signin-heading">Provide
 			the information about violation</h2>
 		<input class="form-control" type="text" placeholder="Episode name"
@@ -57,10 +68,10 @@
 			type="hidden" required id="lngFld"> <br>
 
 		<div class="form-group" id="imageUploader">
-			<label style="padding: 3px;">Add violation images:</label>
+			<label>Add violation images:</label>
 			<table width="100%" border="1" cellspacing=0 cellpadding=5>
 				<tr>
-					<td align="left" height="105" style="background-color: white"
+					<td align="left" height="105" class="drop-area"
 						ondragenter="return false" ondragover="return false"
 						ondrop="dropIt(event)"><output id="thumbs"></output></td>
 				</tr>
