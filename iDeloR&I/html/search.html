@@ -17,11 +17,11 @@
 	<div class="tab-pane" id="best-match">
 		<h2>People</h2>
 		<div class="cool-text well well-sm" ng-repeat="person in result.persons">
-			<a href="citizen.html">>> {{person.name}} ({{person.nick}})</a>
+			<a href="#citizen/{{person.id}}">>> {{person.name}} ({{person.nick}})</a>
 		</div>
 		<h2>Violations</h2>
 		<div ng-repeat="violation in result.viloations" class="cool-text well well-sm">
-			<a href="#complaint.html">>> {{violation.name}} on {{violation.date}}</a>
+			<a href="#complaint/{{violation.id}}">>> {{violation.name}} on {{violation.date}}</a>
 		</div>
 	</div>
 	
