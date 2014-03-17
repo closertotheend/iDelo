@@ -64,6 +64,7 @@ iDeloApp.run([ '$rootScope', '$location', 'Auth',
 					$("li#user-new-complaint").hide();
 					$("li#citizen-registry").show();
 					$("li#all-citizens").show();
+					$("li#new-crime-add").show();
 				}
 			});
 		} ]);
