@@ -28,7 +28,6 @@ iDeloApp.config([ '$routeProvider', function($routeProvider) {
 		controller : 'SearchCtrl'
 	}).when('/newComplaintType', {
         templateUrl : 'newCrimeTypeAddition.html'
-    }).otherwise({
 	}).when('/asAdmin', {
 		templateUrl : 'indexInfo.html',
 		controller : 'LoginCtrl'
