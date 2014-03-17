@@ -3,7 +3,7 @@ var iDeloApp = angular.module('iDeloApp',
 
 iDeloApp.config([ '$routeProvider', function($routeProvider) {
 	$routeProvider.when('/', {
-		templateUrl : 'indexInfo.html',
+		templateUrl : 'indexInfo.html'
 	}).when('/complaints/:citizenId', {
 		templateUrl : 'complaints.html',
 		controller : 'ComplaintsCtrl'
@@ -14,12 +14,12 @@ iDeloApp.config([ '$routeProvider', function($routeProvider) {
 		templateUrl : 'myComplaints.html',
 		controller : 'ComplaintsCtrl'
 	}).when('/newComplaint', {
-		templateUrl : 'newComplaint.html',
+		templateUrl : 'newComplaint.html'
 	}).when('/citizen/:citizenId', {
 		templateUrl : 'citizen.html',
 		controller : 'CitizenCtrl'
 	}).when('/complaint', {
-		templateUrl : 'complaint.html',
+		templateUrl : 'complaint.html'
 	}).when('/search/:query', {
 		templateUrl : 'search.html',
 		controller : 'SearchCtrl'
