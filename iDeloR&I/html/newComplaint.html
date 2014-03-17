@@ -25,7 +25,20 @@
 </script>
 
 <div class="jumbotron">
-	<form role="form" style="max-width: 45%;">
+
+    <style>
+        .images {
+            height:75px;
+            width:75px;
+            border:0px;
+            margin:15px 15px 0 0;
+        }
+
+        .help-inline {
+            color : #ED5156;
+        }
+    </style>
+	<form role="form" style="max-width: 45%;" action="index.html" onsubmit="return(validateComplaintForm())" >
 		<h2 style="padding-bottom: 5%" class="form-signin-heading">Provide
 			the information about violation</h2>
 		<input class="form-control" type="text" placeholder="Episode name"
@@ -43,7 +56,7 @@
 		<input type="hidden" required id="latFld"> <input
 			type="hidden" required id="lngFld"> <br>
 
-		<div class="form-group">
+		<div class="form-group" id="imageUploader">
 			<label style="padding: 3px;">Add violation images:</label>
 			<table width="100%" border="1" cellspacing=0 cellpadding=5>
 				<tr>
@@ -80,6 +93,29 @@
 			loadScript();
 		});
 
+        function validateComplaintForm() {
+            $('.help-inline').remove();
+
+            if($('.tag').length == 0){
+                $('#violationTags').after('<span class="help-inline">You should provide at least one tag!</span>');
+                window.setTimeout(scrollToElement('#violationTags'), 300);
+                return false;
+            }
+            if(!($('#latFld').val() && $('#lngFld').val())) {
+                $('#map_canvas').after('<span class="help-inline">Please mark the location!</span>');
+                window.setTimeout(scrollToElement('#map_canvas'), 300);
+                return false;
+            }
+
+            // optional?
+            if($('.images').length == 0) {
+                $('#imageUploader').after('<span class="help-inline">You should upload at least one image!</span>');
+                window.setTimeout(scrollToElement('#imageUploader'), 300);
+                return false;
+            }
+            return true;
+        }
+
 		function loadScript() {
 			var script = document.createElement('script');
 			script.type = 'text/javascript';
@@ -88,5 +124,14 @@
 					+ 'callback=initMap';
 			document.body.appendChild(script);
 		}
-	</script>
+
+        $('#datetimepicker').datetimepicker();
+
+        function scrollToElement(id) {
+            $('html, body').animate({
+                scrollTop: $(id).offset().top - 100
+            }, 700);
+        };
+
+    </script>
 </div>
