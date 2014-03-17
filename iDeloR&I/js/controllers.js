@@ -54,10 +54,8 @@ iDeloApp.controller('SearchCtrl', [ '$scope', '$routeParams', '$http',
 			}
 		} ]);
 
-iDeloApp.controller('loginCtrl', [ '$scope', 'Auth', function($scope, Auth) {
-	$scope.login = function() {
-		Auth.setUser(user); // Update the state of the user in the app
-	};
+iDeloApp.controller('LoginCtrl', [ '$scope', 'Auth', function($scope, Auth) {
+		Auth.setUser(12); // Update the state of the user in the app
 } ]);
 
 iDeloApp.controller('mainCtrl', [ '$scope', 'Auth', '$location',

@@ -26,6 +26,9 @@ iDeloApp.config([ '$routeProvider', function($routeProvider) {
 	}).when('/search', {
 		templateUrl : 'search.html',
 		controller : 'SearchCtrl'
+	}).when('/asAdmin', {
+		templateUrl : 'indexInfo.html',
+		controller : 'LoginCtrl'
 	}).otherwise({
 		redirectTo : '/allComplaints'
 	});
@@ -54,9 +57,11 @@ iDeloApp.run([ '$rootScope', '$location', 'Auth',
 					console.log('USER');
 					$("li#citizen-registry").hide();
 					$("li#all-citizens").hide();
-				} else {
-//					console.log('ALLOW');
-//					$location.path('/home');
+				} else if (Auth.getUser() === 12) {
+					$("li#citizen-registry").show();
+					$("li#all-citizens").show();
+					$("li#user-complaints").hide();
+					$("li#user-new-complaint").hide();
 				}
 			});
 		} ]);
