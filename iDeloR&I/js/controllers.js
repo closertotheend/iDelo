@@ -43,9 +43,26 @@ iDeloApp.controller('SearchCtrl', [ '$scope', '$routeParams', '$http',
 			}
 		} ]);
 
-iDeloApp.controller('AuthCtrl', [ '$scope', '$routeParams', '$http',
-		function($scope, $routeParams, $http) {
-			$http.get('json/search/0.json').success(function(data) {
-				$scope.result = data;
-			});
+iDeloApp.controller('loginCtrl', [ '$scope', 'Auth', function($scope, Auth) {
+	$scope.login = function() {
+		Auth.setUser(user); // Update the state of the user in the app
+	};
+} ]);
+
+iDeloApp.controller('mainCtrl', [ '$scope', 'Auth', '$location',
+		function($scope, Auth, $location) {
+
+			$scope.$watch(Auth.isLoggedIn, function(value, oldValue) {
+
+				if (!value && oldValue) {
+					console.log("Disconnect");
+					$location.path('/login');
+				}
+
+				if (value) {
+					console.log("Connect")
+					$location.path('/login');
+				}
+
+			}, true);
 		} ]);

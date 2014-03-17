@@ -30,3 +30,32 @@ iDeloApp.config([ '$routeProvider', function($routeProvider) {
 		redirectTo : '/allComplaints'
 	});
 } ]);
+
+iDeloApp.factory('Auth', function() {
+	var user;
+	return {
+		setUser : function(aUser) {
+			user = aUser;
+		},
+		isLoggedIn : function() {
+			return (user) ? user : false;
+		}
+	}
+})
+
+iDeloApp.run([ '$rootScope', '$location', 'Auth',
+		function($rootScope, $location, Auth) {
+			$rootScope.$on('$routeChangeStart', function() {
+				if (!Auth.isLoggedIn()) {
+					$(function() {
+						$("li#citizen-registry").hide();
+						$("li#all-citizens").hide();
+					});
+					console.log('DENY');
+					$location.path('/search');
+				} else {
+					console.log('ALLOW');
+					$location.path('/home');
+				}
+			});
+		} ]);
