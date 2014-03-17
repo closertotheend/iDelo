@@ -10,7 +10,7 @@
                 "lat": 65.12121,
                 "lng": 65.2121
             },
-            "images": ["img1.jpg", "img2.jpg"]
+            "images": ["../img/compaint-images/img1.jpg", "../img/compaint-images/img2.jpg"]
         }
     ]
 }
